@@ -12,6 +12,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/DependenceInject" />
+            <option value="$PROJECT_DIR$/MyLib" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>

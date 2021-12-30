@@ -1,2 +1,4 @@
 rootProject.name = "RxJavaApp"
 include ':app'
+include ':DependenceInject'
+include ':MyLib'

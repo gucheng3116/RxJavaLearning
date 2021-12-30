@@ -12,11 +12,6 @@ import io.reactivex.rxjava3.functions.Consumer;
  * Created on 2021/12/21.
  */
 public class CreateOperatorDemo {
-//    public static void main(String[] args) {
-//        System.out.println("====================");
-//        test1();
-//        System.out.println("====================");
-//    }
 
     public static void test1() {
         Observable.create(new ObservableOnSubscribe<Object>() {
