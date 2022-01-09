@@ -22,7 +22,7 @@ public class CreateOperatorDemo {
 //        System.out.println("====================");
 //    }
 
-    public static void test1() {
+    public static void testCreateAndMap() {
         Observable.create(new ObservableOnSubscribe<Object>() {
             @Override
             public void subscribe(@NonNull ObservableEmitter<Object> emitter) throws Throwable {
@@ -32,8 +32,7 @@ public class CreateOperatorDemo {
                 emitter.onNext(3);
                 emitter.onNext(4);
                 emitter.onNext(5);
-//                emitter.onComplete();
-                emitter.onError(new Throwable("test error"));
+                emitter.onComplete();
 
             }
         }).map(new Function<Object, Object>() {
@@ -45,20 +44,14 @@ public class CreateOperatorDemo {
         }).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Throwable {
-                System.out.println("accept1... " + o);
                 Log.d(TAG,"accept object is " + o);
             }
 
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Throwable {
-                System.out.println("accept2..." + throwable);
-            }
         });
     }
 
 
-    public static void test2() {
+    public static void subcribeNextAndError() {
         Observable.create(new ObservableOnSubscribe<Object>() {
             @Override
             public void subscribe(@NonNull ObservableEmitter<Object> emitter) throws Throwable {
@@ -75,35 +68,39 @@ public class CreateOperatorDemo {
         }).subscribe(new Consumer<Object>() {
             @Override
             public void accept(Object o) throws Throwable {
-                System.out.println("accept1... " + o);
+                Log.d(TAG, "accept1...");
             }
         }, new Consumer<Throwable>() {
             @Override
             public void accept(Throwable throwable) throws Throwable {
-                System.out.println("accept2..." + throwable);
+                Log.d(TAG, "accept2... exception " + throwable);
             }
         });
     }
 
-    Observer obeserver = new Observer<Object>() {
+    public static void testJust() {
+        Observable.just(10).subscribe(observer);
+    }
+
+    static Observer observer = new Observer<Object>() {
         @Override
         public void onSubscribe(@NonNull Disposable d) {
-            Log.d(TAG, "");
+            Log.d(TAG, "onSubscribe");
         }
 
         @Override
         public void onNext(@NonNull Object o) {
-
+            Log.d(TAG, "onNext object is " + o);
         }
 
         @Override
         public void onError(@NonNull Throwable e) {
-
+            Log.d(TAG, "onError");
         }
 
         @Override
         public void onComplete() {
-
+            Log.d(TAG, "onComplete");
         }
     };
 }
